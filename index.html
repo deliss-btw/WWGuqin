@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Guqin Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <h1>Wuthering Waves - Guqin Simulator</h1>
+      </div>
+      <div class="audio-status" id="audioStatus">Audio: waiting</div>
+    </header>
+
+    <main>
+      <section class="hero panel">
+        <div class="hero-copy">
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-tab="free">Free Play</button>
+            <button class="tab" data-tab="qte">Play Track</button>
+            <button class="tab" data-tab="custom">Create/Import Custom Track</button>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="segmented" aria-label="Audio mode">
+            <button id="fundamentalBtn" class="segment active">Note</button>
+            <button id="harmonicBtn" class="segment">Harmonic</button>
+          </div>
+          <label class="volume-control">Volume
+            <input id="volume" type="range" min="0" max="1" value="0.85" step="0.01" />
+          </label>
+        </div>
+      </section>
+
+      <section id="qtePanel" class="qte-panel panel hidden">
+        <div class="qte-config">
+          <div class="eyebrow">TRACKS</div>
+          <label class="qte-select-label" for="qteSelect">Config
+            <select id="qteSelect" disabled>
+              <option>Loading…</option>
+            </select>
+          </label>
+          <div id="qteConfigStatus" class="muted">Loading MusicalInstrumentQteConfig.json…</div>
+          <h2 id="qteTitle">Loading…</h2>
+        </div>
+        <div class="qte-dots" id="qteDots" aria-label="QTE progress"></div>
+        <button id="restartQte" class="ghost-button">Restart</button>
+      </section>
+
+      <section id="customPanel" class="custom-panel panel hidden">
+        <div class="custom-column">
+          <div class="eyebrow">CREATE CUSTOM QTE</div>
+          <label class="field-label" for="customName">Name
+            <input id="customName" type="text" maxlength="80" placeholder="My melody" />
+          </label>
+          <div class="button-row">
+            <button id="recordBtn" class="ghost-button">Start recording</button>
+            <button id="undoCustom" class="ghost-button">Undo</button>
+            <button id="clearCustom" class="ghost-button">Clear</button>
+            <button id="saveCustom" class="primary-button">Save</button>
+          </div>
+          <div id="recordStatus" class="muted">Tap Start recording and play something!</div>
+          <div id="customSequence" class="sequence-preview">Empty sequence</div>
+        </div>
+
+        <div class="custom-column">
+          <div class="eyebrow">SHARE / IMPORT</div>
+          <label class="field-label" for="shareCode">GQ code
+            <textarea id="shareCode" rows="4" placeholder="GQ1:..."></textarea>
+          </label>
+          <div class="button-row">
+            <button id="generateCode" class="ghost-button">Generate code</button>
+            <button id="importCode" class="primary-button">Import code</button>
+          </div>
+          <label class="file-button">Import JSON
+            <input id="customJsonFile" type="file" accept="application/json,.json" />
+          </label>
+          <div id="customMessage" class="muted" aria-live="polite">Custom QTEs are saved in this browser.</div>
+        </div>
+      </section>
+
+      <section class="instrument panel">
+        <div class="strings" aria-hidden="true"></div>
+        <div class="board" id="board"></div>
+      </section>
+
+      <section class="bottom-grid">
+        <div class="panel info-card">
+          <div class="eyebrow">KEYBOARD</div>
+          <div class="keymap">
+            <div><kbd>Q</kbd><kbd>W</kbd><kbd>E</kbd><kbd>R</kbd><kbd>T</kbd><kbd>Y</kbd><kbd>U</kbd><span>High</span></div>
+            <div><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><kbd>F</kbd><kbd>G</kbd><kbd>H</kbd><kbd>J</kbd><span>Middle</span></div>
+            <div><kbd>Z</kbd><kbd>X</kbd><kbd>C</kbd><kbd>V</kbd><kbd>B</kbd><kbd>N</kbd><kbd>M</kbd><span>Low</span></div>
+          </div>
+          <p><kbd>Space</kbd> switches between Note and Harmonic modes.</p>
+        </div>
+
+        <div class="panel info-card">
+          <div class="eyebrow">CURRENT INPUT</div>
+          <div class="current-note" id="currentNote">—</div>
+          <div class="current-sub" id="currentSub">Tap or press key to play!</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
