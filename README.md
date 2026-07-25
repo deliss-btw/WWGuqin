@@ -6,6 +6,8 @@ Run with a local HTTP server, for example:
 Then open:
     http://localhost:8000
 
+or just use https://deliss-btw.github.io/WWGuqin/
+
 # AUDIO
 Format: OGG Vorbis (.ogg)
 Note samples: audio/note/c4.ogg ... audio/note/b2.ogg
