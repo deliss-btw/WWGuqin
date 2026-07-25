@@ -6,7 +6,7 @@ Run with a local HTTP server, for example:
 Then open:
     http://localhost:8000
 
-or just use https://deliss-btw.github.io/WWGuqin/
+or just use https://guqin.voruna.moe
 
 # AUDIO
 Format: OGG Vorbis (.ogg)
