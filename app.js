@@ -376,7 +376,7 @@
     modeDescription.textContent = mode === 'free'
       ? 'Free play. Switch between Fundamental and Harmonic.'
       : mode === 'qte'
-        ? `Game QTEs from ${QTE_CONFIG_PATH} plus saved custom ones.`
+        ? `Pre-recorded tracks.`
         : 'Record your sequence, save it, or share a short GQ code.';
 
     board.querySelectorAll('.note-key').forEach(k => k.classList.remove('focus', 'done', 'wrong'));
